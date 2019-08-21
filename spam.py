@@ -23,7 +23,9 @@ while True:
 
 def spam(reciever_email):
     try:
+        
         def get_details():
+            
             def file(sender_loggin,sender_password,line_count):
                 f = open('login_detail.txt','r')
                 details = f.readlines()
@@ -36,16 +38,7 @@ def spam(reciever_email):
                         sender_loggin.append(i)
                         line_count = line_count + 1
 
-            def get_email():
-                x = len(sender_loggin)
-                x = x-1
-                return sender_loggin[random.randint(0,x)]
-
-            def get_password():
-                x = len(sender_password)
-                x = x-1
-                return sender_password[random.randint(0,x)]
-
+                        
     
             sender_loggin = []
             sender_password = []
@@ -53,13 +46,20 @@ def spam(reciever_email):
 
             file(sender_loggin,sender_password,line_count)
 
-            e = get_email()
+            x = len(sender_password)
+            x = x-1
+            value = random.randint(0,x)
+
+            e = sender_loggin[value]
             e.strip()
-            p = get_password()
+            p = sender_password[value]
             p.strip()
 
             return e,p
             f.close()
+
+
+            
 
         def get_subject():
             f = open('subjects.txt','r')
@@ -107,8 +107,8 @@ def spam(reciever_email):
         print("\nThe email was sent successfully")
     except:
         print("Oops, an ERROR occured. Please make sure that all files contain right data and none of them are empty.\nRead the 'README.txt for more information.")
-        print("This window will close in 60 sec")
-        time.sleep(60)
+        print("In case this is a network error the rpogramme will re-attempt to continiue in 10 sec\nIf this keeps happening check the input data")
+        time.sleep(10)
 
 
 count = 0
@@ -119,7 +119,7 @@ for i in range(times):
         os.system('cls')
         spam(reciever_email)
         count = count + 1
-        print("\nThere are " + str(times-count) + " emails lesft to send")
+        print("\nThere are " + str(times-count) + " emails left to send")
  
     else:
         os.system('cls')
